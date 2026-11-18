@@ -1,0 +1,19 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Pilot attendance. Group A: 9 of 18 (50%). Group B: 16 of 40 (40%).",
+  "width": 205, "height": {"step": 36},
+  "data": {"values": [
+    {"group":"A", "attended":9, "registered":18},
+    {"group":"B", "attended":16, "registered":40}
+  ]},
+  "transform": [{"calculate":"datum.attended / datum.registered", "as":"rate"},
+    {"calculate":"datum.group + ' · ' + datum.attended + ' of ' + datum.registered","as":"label"}],
+  "encoding": {
+    "y":{"field":"label","type":"nominal","sort":null,"axis":{"title":null,"ticks":false}},
+    "x":{"field":"rate","type":"quantitative","scale":{"domain":[0,1]},"axis":{"format":".0%","values":[0,0.5,1],"title":"Share of registered people"}}
+  },
+  "layer":[
+    {"mark":{"type":"bar","size":15,"color":"#266b62"}},
+    {"mark":{"type":"text","align":"left","dx":5,"fontSize":14},"encoding":{"text":{"field":"rate","format":".0%"}}}
+  ]
+}

@@ -1,48 +1,61 @@
-# Reader-first Writing · 写给读者
+# Reader-first Writing
 
-Turn the same source material into the document a particular reader needs. A manager deciding whether to extend a pilot needs a rate and its denominator. A volunteer at the door needs to know when to stop admitting people. Both can use the same page, if the information reaches them in the right order.
+Turn source material into a document its readers can use. A coordinator deciding whether to extend a pilot needs the attendance rate and its denominator. A volunteer at the door needs to know when to stop admitting people. Both can use the same page when the instructions come first and the chart sits beside the pilot results.
 
-一个可在不同 agent 中使用的编辑技能。它从读者要做的决定出发，选择事实、文种、图表和语言。已有好段落或好图就保留。适合难懂的评审稿、多受众改写和随文图表设计。
+## What it produces
 
-<img src="evals/samples/attendance-mobile.png" width="280" alt="手机交班页：先交代重复验票和机器无响应的处理，再用共同尺度比较甲组50%和乙组40%的到场率。">
+**A pilot brief.** Group A had fewer visitors but a higher attendance rate. The chart shows both denominators. One session gives the coordinator a comparison, with too little evidence to predict future turnout.
 
-In the handover trial, the input diagram used three labels (“send → process → finish”). A volunteer could not tell whether a timeout allowed deleting the record. [Compare the input](evals/samples/intake-mobile.png) with [the repaired mobile diagram](evals/samples/handover-mobile.png).
+![Group A had 9 attendees out of 18 registrations, or 50 percent. Group B had 16 out of 40, or 40 percent.](evals/figures/attendance.svg)
 
-[Try the source brief](evals/brief.txt) · [See both generated versions and test results](evals/README.md) · [同料异稿与跨地区样例](examples.md)
+**A code walkthrough.** In the example below, the door operator needs to know when it is safe to admit someone. The important detail is whether saving the ticket was confirmed. A missing reply sends the operator back to check the existing ID.
 
-## Try it / 试用
+![An already used ticket goes to a supervisor. For an unused ticket, save the ID and admit the visitor only on confirmation. If there is no reply, keep the ID and check its status.](evals/figures/check-in.svg)
 
-Copy `SKILL.md` and `references/` into a directory named `reader-first-writing` under your agent’s skill root. No runtime dependency is required to load the skill. Rendering uses the tools available to your agent.
+Both figures were drawn by the bundled module. [View the chart source](assets/figures/attendance.vl.json), [inspect the diagram source](assets/figures/check-in.dot), or [compare earlier generated pages and their reading trials](evals/README.md).
 
-| Agent | Project installation | Try it |
+## Try it
+
+Install the repository as a directory named `reader-first-writing` in your agent’s skill root, or copy its runtime files as shown below. The writing instructions are plain Markdown. The document can be in the language requested by the reader.
+
+| Agent | Project installation | Invocation |
 |---|---|---|
-| [Codex](https://developers.openai.com/codex/skills/) | `.agents/skills/reader-first-writing/` | `$reader-first-writing` followed by your request |
-| [Claude Code](https://code.claude.com/docs/en/skills) | `.claude/skills/reader-first-writing/` | `/reader-first-writing` followed by your request |
+| [Codex](https://developers.openai.com/codex/skills/) | `.agents/skills/reader-first-writing/` | `$reader-first-writing` followed by the request |
+| [Claude Code](https://code.claude.com/docs/en/skills) | `.claude/skills/reader-first-writing/` | `/reader-first-writing` followed by the request |
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/skill/skill-filesystem/README.md) | `.dsh/skills/reader-first-writing/` or the shared `.agents/skills/` root with the filesystem provider enabled | Ask the agent to use the named skill |
 
-For example, from this repository, with the destination set to your project:
+From this repository, replace the destination with your project:
 
 ```sh
 dest="../my-project/.agents/skills/reader-first-writing"
-mkdir -p "$dest"
-cp SKILL.md "$dest/"
-cp -R references "$dest/"
+mkdir -p "$dest/scripts/figures"
+cp SKILL.md LICENSE "$dest/"
+cp -R references assets "$dest/"
+cp scripts/figures/*.json scripts/figures/render.mjs "$dest/scripts/figures/"
 ```
 
 > Turn these field notes into a handover for a first-time operator. They will use a phone. Keep every condition that changes whether they should stop.
 
-> 用这份记录给经理写一段试点建议，再给当班人写一张手机交接页。需要图时把图放在作决定的地方；材料没定的事情保留为待定。
+> Write a design review for engineers new to this service. Show where a timeout leaves the operation undecided. Use the function names from the supplied code.
 
-使用方可指定语种、地区、受众、文种和样稿。机构流程和实际界面文字优先于对国别风格的猜测。[跨地区写作](references/localization.md)
+## How figures fit the document
+
+The skill chooses whether a visual will help, which question it should answer, and where the reader will need it. It can keep an existing figure, replace one with a short table, or draw a new one. The bundled drawing module produces editable data charts and code diagrams as SVG. Its CLI uses Node.js 22.12 or later and needs a one-time install:
+
+```sh
+(cd scripts/figures && npm ci --ignore-scripts)
+node scripts/figures/render.mjs assets/figures/attendance.vl.json attendance.svg
+node scripts/figures/render.mjs assets/figures/check-in.dot check-in.svg
+```
+
+To choose a different renderer, name it in the request, for example “Use Mermaid for the sequence diagram and include the rendered image.” The writer still checks the evidence, caption, placement and final viewing size. For simple figures in environments without Node, the instructions also cover local HTML or SVG. [Drawing workflow and formats](references/rendering.md)
 
 ## When to choose it
 
-- Already have finished prose and want to retain its meaning while removing formulaic writing? [Humanizer](https://github.com/blader/humanizer) is a strong fit. It also considers structure, audience knowledge and voice.
-- Need to decide which facts, exceptions or visuals belong in a review, field guide, or briefing? Start here. The same program may produce a brief note, a technical diagram, or no figure, depending on the reader's task.
-- Need a particular graphic format or chart renderer? Use your preferred drawing tool to render the result. The skill keeps the figure, its evidence, caption and position together in the document. [Figure editing guide](references/figures.md)
+[Humanizer](https://github.com/blader/humanizer) is a good fit for an existing article that needs to retain the author’s voice while losing formulaic prose. Choose Reader-first Writing when the editor must also decide which facts, exceptions and visuals belong in a report, a technical review or a field guide. [Examples across audiences and locales](examples.md)
 
 ## Help improve it
 
-Try a task with the skill enabled and disabled, or compare revisions with the same model, materials and output format. Ask a reader to make the intended decision without the original prompt. Report a specific missed condition, confusing figure, or case where the simpler version worked equally well. Include an anonymized or invented example you may share, using the [reader-case issue template](.github/ISSUE_TEMPLATE/reader-case.md). Re-run accepted cases before releasing a change. [Public test materials](evals/README.md)
+Ask a reader to make the intended decision without seeing your prompt. If they miss a condition or misread a figure, share the smallest example you have permission to publish, the target language and device, and what the reader understood. Examples where simpler instructions worked just as well are welcome. [Submit a reader case](.github/ISSUE_TEMPLATE/reader-case.md) · [Public test materials](evals/README.md)
 
-The package uses the [Agent Skills format](https://agentskills.io/specification). Writing draws on [Diátaxis](https://diataxis.fr/) and the public guides linked in each reference. Original instructions and fixtures are available under the [MIT license](LICENSE).
+The package follows the [Agent Skills format](https://agentskills.io/specification). Original instructions, renderer wrapper and fixtures use the [MIT license](LICENSE). The drawing libraries retain their own licenses.

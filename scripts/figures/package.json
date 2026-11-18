@@ -1,0 +1,12 @@
+{
+  "name": "reader-first-figures",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.12" },
+  "dependencies": {
+    "@viz-js/viz": "3.31.0",
+    "vega": "6.4.0",
+    "vega-lite": "6.5.0"
+  }
+}

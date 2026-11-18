@@ -1,0 +1,13 @@
+digraph check_in {
+  rankdir=TB;
+  node [style="rounded", margin="0.16,0.10"];
+  check [label="check_in(id)\nRead ticket status"];
+  used [label="Already used\nSend to supervisor"];
+  fresh [label="Unused\nCall save(id)"];
+  admit [style="rounded,filled", fillcolor="#e9f4ef", label="Confirmed\nAdmit visitor"];
+  wait [style="rounded,filled", fillcolor="#fbf1df", label="No reply\nKeep ID; check status"];
+  check -> used;
+  check -> fresh;
+  fresh -> admit;
+  fresh -> wait;
+}
