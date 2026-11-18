@@ -1,6 +1,6 @@
 # Reader-first Writing
 
-Turn source material into a document its readers can use. A coordinator deciding whether to extend a pilot needs the attendance rate and its denominator. A volunteer at the door needs to know when to stop admitting people. Both can use the same page when the instructions come first and the chart sits beside the pilot results.
+An agent skill for writing documents around a reader’s next decision. Give it your source material, the audience and the job the document needs to do. It can turn the same field notes into a phone handover for a volunteer or a pilot brief for the person deciding whether to fund another session.
 
 ## What it produces
 
@@ -24,15 +24,13 @@ Install the repository as a directory named `reader-first-writing` in your agent
 | [Claude Code](https://code.claude.com/docs/en/skills) | `.claude/skills/reader-first-writing/` | `/reader-first-writing` followed by the request |
 | [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/skill/skill-filesystem/README.md) | `.dsh/skills/reader-first-writing/` or the shared `.agents/skills/` root with the filesystem provider enabled | Ask the agent to use the named skill |
 
-From this repository, replace the destination with your project:
+From your project directory, clone into the skill path for your agent. For Codex:
 
 ```sh
-dest="../my-project/.agents/skills/reader-first-writing"
-mkdir -p "$dest/scripts/figures"
-cp SKILL.md LICENSE "$dest/"
-cp -R references assets "$dest/"
-cp scripts/figures/*.json scripts/figures/render.mjs "$dest/scripts/figures/"
+git clone https://github.com/hw118118/reader-first-writing.git .agents/skills/reader-first-writing
 ```
+
+Try it with your own source notes or code:
 
 > Turn these field notes into a handover for a first-time operator. They will use a phone. Keep every condition that changes whether they should stop.
 
@@ -40,7 +38,7 @@ cp scripts/figures/*.json scripts/figures/render.mjs "$dest/scripts/figures/"
 
 ## How figures fit the document
 
-The skill chooses whether a visual will help, which question it should answer, and where the reader will need it. It can keep an existing figure, replace one with a short table, or draw a new one. The bundled drawing module produces editable data charts and code diagrams as SVG. Its CLI uses Node.js 22.12 or later and needs a one-time install:
+The skill chooses whether a visual will help, which question it should answer, and where the reader will need it. It can keep an existing figure, replace one with a short table, or draw a new one. The bundled drawing module produces editable data charts and code diagrams as SVG. To render the examples, run these commands from the skill directory with Node.js 22.12 or later:
 
 ```sh
 (cd scripts/figures && npm ci --ignore-scripts)
@@ -56,6 +54,6 @@ To choose a different renderer, name it in the request, for example “Use Merma
 
 ## Help improve it
 
-Ask a reader to make the intended decision without seeing your prompt. If they miss a condition or misread a figure, share the smallest example you have permission to publish, the target language and device, and what the reader understood. Examples where simpler instructions worked just as well are welcome. [Submit a reader case](.github/ISSUE_TEMPLATE/reader-case.md) · [Public test materials](evals/README.md)
+Ask a reader to make the intended decision without seeing your prompt. If they miss a condition or misread a figure, share the smallest example you have permission to publish, the target language and device, and what the reader understood. Examples where simpler instructions worked just as well are welcome. [Submit a reader case](https://github.com/hw118118/reader-first-writing/issues/new?template=reader-case.md) · [Public test materials](evals/README.md)
 
 The package follows the [Agent Skills format](https://agentskills.io/specification). Original instructions, renderer wrapper and fixtures use the [MIT license](LICENSE). The drawing libraries retain their own licenses.

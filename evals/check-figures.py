@@ -22,6 +22,8 @@ with tempfile.TemporaryDirectory() as directory:
     chart = json.loads((assets / 'attendance.vl.json').read_text())
     chart['data']['values'][0]['attended'] = 3
     chart['data']['values'][0]['registered'] = 4
+    # A source row can describe URLs without requesting a network load.
+    chart['data']['values'][0]['data'] = [{'url': 'example.invalid'}]
     source = tmp / 'trial.vl.json'
     source.write_text(json.dumps(chart))
     plot = draw(source, tmp / 'chart.svg')

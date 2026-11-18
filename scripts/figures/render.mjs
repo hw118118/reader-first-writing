@@ -20,12 +20,13 @@ async function render(input, output) {
     const view = new View(parse(spec), {renderer: 'none'});
     view.loader().load = async uri => { throw new Error('Use inline data instead of ' + uri); };
     // Vega can log a loader failure and render an empty view, so check the compiled data first.
-    function checkData(node) {
-      if (!node || typeof node !== 'object') return;
-      if (Array.isArray(node.data) && node.data.some(d => d && Object.hasOwn(d, 'url'))) {
+    function checkData(scope) {
+      if (scope.data?.some(dataset => Object.hasOwn(dataset, 'url'))) {
         throw new Error('Inline the source values before rendering');
       }
-      Object.values(node).forEach(checkData);
+      for (const mark of scope.marks ?? []) {
+        if (mark.type === 'group') checkData(mark);
+      }
     }
     try {
       checkData(spec);

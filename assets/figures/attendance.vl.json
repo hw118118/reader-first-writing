@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Pilot attendance. Group A: 9 of 18 (50%). Group B: 16 of 40 (40%).",
+  "description": "Pilot attendance by group, as a share of registered participants.",
   "width": 205, "height": {"step": 36},
   "data": {"values": [
     {"group":"A", "attended":9, "registered":18},
