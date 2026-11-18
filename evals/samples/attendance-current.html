@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>入口志愿者交班页</title>
+<style>
+* { box-sizing: border-box }
+body { margin: 0; color: #1f3335; background: #f4f7f5; font: 1rem/1.6 "PingFang SC","Microsoft YaHei",system-ui,sans-serif }
+main { max-width: 39rem; margin: 0 auto; padding: 1.5rem clamp(1rem,5vw,2.5rem) 2rem; background: white }
+header { border-top: .3rem solid #23665c; padding: 1rem 0; border-bottom: 1px solid #b5c6bf }
+h1, h2, p, figure, dl, dd { margin: 0 }
+h1 { font-size: clamp(1.55rem,5vw,2rem); line-height: 1.3 }
+header p { margin-top: .4rem; color: #205e53; font-size: 1.15rem; font-weight: 650 }
+section { padding-top: 1.3rem }
+h2 { font-size: 1.22rem; margin-bottom: .35rem }
+dl { margin-top: .85rem }
+dl div { border-left: .22rem solid #879c94; padding: .6rem .85rem; background: #f3f6f4; margin-bottom: .55rem }
+dl div:first-child { border-color: #a55c29; background: #fbf4ed }
+dt { font-weight: 700 }
+dd { margin-top: .2rem }
+figure { margin: .8rem 0; padding: .8rem 1rem; border: 1px solid #c7d3cd; border-radius: .4rem }
+figcaption { font-size: .9rem; color: #435751 }
+.group { margin-top: .75rem }
+.label { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .2rem .5rem }
+.count { font-size: .9rem; color: #435751 }
+.track { height: .55rem; margin-top: .28rem; background: #e5ece8 }
+.track span { display: block; height: 100%; background: #276c61 }
+.axis { display: flex; justify-content: space-between; color: #53665e; font: .8rem/1.5 system-ui; margin-top: .25rem }
+</style>
+</head>
+<body>
+<main>
+<header><h1>入口志愿者交班页</h1><p>明早 9:00 开门</p></header>
+<section aria-labelledby="gate"><h2 id="gate">现场验票</h2>
+<p>参会者可以直接出示电子票。验票时遇到以下情况，按机器状态处理。</p>
+<dl>
+<div><dt>机器显示“已核销”</dt><dd><strong>不可再次放行。</strong>交现场主管核查。</dd></div>
+<div><dt>机器无响应</dt><dd>先核对纸质名单。找到姓名才能放行。找不到姓名，暂缓放行，交现场主管核查。</dd></div>
+</dl>
+</section>
+<section aria-labelledby="trial"><h2 id="trial">试点到场率</h2>
+<figure>
+<figcaption>到场率 = 到场人数 ÷ 报名人数</figcaption>
+<div class="group"><div class="label"><strong>甲组　50%</strong><span class="count">9 人到场 / 18 人报名</span></div><div class="track" aria-hidden="true"><span style="width:50%"></span></div></div>
+<div class="group"><div class="label"><strong>乙组　40%</strong><span class="count">16 人到场 / 40 人报名</span></div><div class="track" aria-hidden="true"><span style="width:40%"></span></div></div>
+<div class="axis" aria-hidden="true"><span>0%</span><span>100%</span></div>
+</figure>
+<p>本次甲组到场率比乙组高 <strong>10 个百分点</strong>。目前只有这一次记录，单凭这次差距还不足以决定是否扩大试点。</p>
+</section>
+</main>
+</body>
+</html>

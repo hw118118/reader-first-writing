@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>记录交接值班指引</title>
+<style>
+* { box-sizing: border-box }
+body { margin: 0; background: #edf2ef; color: #223430; font: 1rem/1.55 "PingFang SC","Microsoft YaHei",system-ui,sans-serif }
+main { margin: auto; max-width: 39rem; padding: 1.4rem clamp(1rem,5vw,2.25rem) 2rem; background: white }
+h1, h2, h3, figure, p, dl, dd { margin: 0 }
+h1 { font-size: clamp(1.55rem,5vw,1.95rem); line-height: 1.25 }
+header { border-top: 4px solid #286351; padding-top: .85rem }
+header p { margin-top: .5rem }
+figure { margin: 1.2rem 0; padding: .85rem clamp(.7rem,3vw,1.15rem) 1rem; border: 1px solid #c1cec7; border-radius: .5rem }
+figcaption, h2 { font-weight: 700; font-size: 1.14rem }
+ol { padding: 0; margin: .72rem 0 0; list-style: none }
+li { position: relative }
+li + li { margin-top: 1.35rem }
+li + li::before { content: ""; position: absolute; width: 2px; height: 1rem; top: -1.35rem; left: 1rem; background: #698779 }
+li + li::after { content: ""; position: absolute; left: calc(1rem - 3px); top: -.55rem; border: 4px solid transparent; border-top-color: #698779 }
+.node { padding: .58rem .8rem; border: 1px solid #c8d6ce; background: #f3f7f4; border-radius: .28rem }
+h3 { font-size: 1rem; color: #215640 }
+dl { margin-top: .45rem }
+dl > div { padding: .38rem .6rem; border-left: .18rem solid #7b9788; background: white }
+dl > div + div { margin-top: .35rem }
+dt { font-weight: 700 }
+.warning { border-color: #ac691d; background: #fff6e6 }
+section { margin-top: 1rem }
+</style>
+</head>
+<body>
+<main>
+<header><h1>记录交接值班指引</h1>
+<p><strong>等回执超时，仍用原编号重发。</strong>超时只说明发放点还没收到回执，仓库可能已经保存。</p></header>
+<figure>
+<figcaption>37 号记录从发出到撤除</figcaption>
+<ol>
+<li><div class="node"><h3>① 发放点留存并发送</h3><p>核对编号，先保留本点的 37 号记录，再把 37 号发给仓库。</p></div></li>
+<li><div class="node"><h3>② 仓库核对 37 号</h3>
+<dl>
+<div><dt>首次收到</dt><dd>保存 37 号，成功后才向发放点回执。</dd></div>
+<div><dt>查到重复编号</dt><dd>只回执，无须再次保存。</dd></div>
+<div><dt>已确认原记录保存失败</dt><dd>由谁重试尚未规定。</dd></div>
+</dl></div></li>
+<li><div class="node"><h3>③ 发放点看回执决定下一步</h3>
+<dl>
+<div><dt>收到 37 号回执</dt><dd>这时才可撤掉发放点的 37 号记录。</dd></div>
+<div class="warning"><dt>等回执超时</dt><dd>仓库可能已保存。保留本点记录，用 <strong>37 号</strong>重发，回到第 ② 步由仓库核对。不要重开编号。</dd></div>
+</dl></div></li>
+</ol>
+</figure>
+<section><h2>下班交接</h2><p>把未决记录连同原编号留给下一班。</p></section>
+</main>
+</body>
+</html>

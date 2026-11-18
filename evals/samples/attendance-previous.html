@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>入口验票 · 志愿者交班页</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f2f5f1; color: #1a302a; font: 1rem/1.65 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    main { max-width: 42rem; margin: auto; padding: clamp(16px, 4vw, 32px); }
+    header, section { padding: clamp(18px, 4vw, 32px); border-radius: 16px; }
+    header { background: #183f36; color: white; }
+    header p { margin: 0; color: #daebe3; }
+    h1 { margin: 0 0 6px; font-size: clamp(1.65rem, 5vw, 2.2rem); line-height: 1.35; }
+    header strong { color: white; font-variant-numeric: tabular-nums; }
+    section { margin-top: 14px; background: #fff; border: 1px solid #d6dfda; }
+    h2 { margin: 0 0 8px; font-size: 1.25rem; line-height: 1.4; }
+    p, dl, dd, figure { margin: 0; }
+    dl { margin-top: 16px; }
+    dl > div { padding: 14px 0 0; border-top: 1px solid #d6dfda; }
+    dl > div + div { margin-top: 14px; }
+    dt { font-weight: 700; }
+    dd { margin-top: 3px; }
+    .stop { color: #863917; }
+    .comparison { font-size: .9rem; color: #4c635a; margin-bottom: 18px; }
+    .group + .group { margin-top: 14px; }
+    .label { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .count { font-size: .9rem; color: #4c635a; }
+    .track { height: 10px; margin-top: 4px; background: #e5ede7; border-radius: 3px; overflow: hidden; }
+    .bar { height: 100%; background: #267461; }
+    .scale { display: flex; justify-content: space-between; margin-top: 3px; color: #4c635a; font-size: .8rem; }
+    figcaption { margin-top: 14px; padding-top: 12px; border-top: 1px solid #d6dfda; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>入口验票交班页</h1>
+      <p>明早 <strong>9:00</strong> 开门</p>
+    </header>
+    <section aria-labelledby="check-in">
+      <h2 id="check-in">怎样验票放行</h2>
+      <p>请参会者直接出示电子票。验票成功后放行。遇到以下情况，按机器状态处理。</p>
+      <dl>
+        <div>
+          <dt>机器显示“已核销”</dt>
+          <dd><strong class="stop">不可再次放行。</strong>请现场主管核查。</dd>
+        </div>
+        <div>
+          <dt>机器无响应</dt>
+          <dd>先核对纸质名单。<strong>找到姓名才能放行。</strong>找不到姓名时，请现场主管核查。</dd>
+        </div>
+      </dl>
+    </section>
+    <section aria-labelledby="attendance">
+      <h2 id="attendance">本次甲组到场率比乙组高 10 个百分点</h2>
+      <p class="comparison">到场率按各组到场人数除以报名人数计算。</p>
+      <figure>
+        <div class="group">
+          <div class="label"><strong>甲组　50%</strong><span class="count">9 人到场 / 18 人报名</span></div>
+          <div class="track" aria-hidden="true"><div class="bar" style="width:50%"></div></div>
+        </div>
+        <div class="group">
+          <div class="label"><strong>乙组　40%</strong><span class="count">16 人到场 / 40 人报名</span></div>
+          <div class="track" aria-hidden="true"><div class="bar" style="width:40%"></div></div>
+        </div>
+        <div class="scale" aria-hidden="true"><span>0%</span><span>100%</span></div>
+        <figcaption>目前只有一次记录。协调人可等后续场次再比较到场率，判断是否扩大试点。</figcaption>
+      </figure>
+    </section>
+  </main>
+</body>
+</html>

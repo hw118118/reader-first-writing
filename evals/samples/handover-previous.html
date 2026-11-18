@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>值班交接 · 记录与回执</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f2f5f2; color: #18332c; font: 1rem/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    main { max-width: 39rem; margin: auto; padding: clamp(14px, 4vw, 32px); }
+    h1 { margin: 0 0 4px; font-size: 1.7rem; }
+    h2 { margin: 0; font-size: 1.15rem; }
+    p, figure { margin: 0; }
+    figure { margin: 18px 0; padding: clamp(14px, 4vw, 26px); border: 1px solid #cfdbd4; border-radius: 16px; background: white; }
+    figcaption { font-weight: 700; font-size: 1.2rem; line-height: 1.45; }
+    ol { list-style: none; padding: 0; margin: 18px 0 0; }
+    .step { padding: 10px 13px; background: #eaf3ef; border-left: 3px solid #31775c; }
+    .step strong, .branch strong { display: block; }
+    .arrow { display: block; padding-left: 14px; color: #436258; font-size: 1.25rem; }
+    .branch { margin: 8px 0 0 14px; padding: 7px 10px; border-left: 2px solid #a26734; background: #fcf4e9; }
+    footer { padding: 0 2px 1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>记录交接值班页</h1>
+    <p>交接前先核对记录编号。</p>
+    <figure>
+      <figcaption>37 号交接中，发放点收到回执才可撤记录</figcaption>
+      <ol>
+        <li>
+          <div class="step"><strong>发放点 · 保留并发送</strong>保留本地的 37 号记录，将 37 号发给仓库。</div>
+          <span class="arrow" aria-hidden="true">↓</span>
+        </li>
+        <li>
+          <div class="step"><strong>仓库 · 按编号处理</strong>首次收到 37 号，保存成功后才发送回执。</div>
+          <div class="branch"><strong>查到重复编号</strong>只回执，无需再次保存。</div>
+          <div class="branch"><strong>已确认原记录保存失败</strong>重试责任人尚未明确。</div>
+          <span class="arrow" aria-hidden="true">↓</span>
+        </li>
+        <li>
+          <div class="step"><strong>发放点 · 查看回执</strong>收到 37 号回执，才可撤掉本地的 37 号记录。</div>
+          <div class="branch"><strong>超时仍未收到回执</strong>此时保存结果未知。保留本地记录，用原编号 37 重发，不要另开编号。</div>
+        </li>
+      </ol>
+    </figure>
+    <footer><h2>下班交接</h2><p>把未决记录留给下一班。</p></footer>
+  </main>
+</body>
+</html>
