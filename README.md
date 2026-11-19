@@ -1,6 +1,20 @@
 # Reader-first Writing
 
-An agent skill for writing documents around a reader’s next decision. Give it your source material, the audience and the job the document needs to do. It can turn the same field notes into a phone handover for a volunteer or a pilot brief for the person deciding whether to fund another session.
+A writing skill for Codex, Claude Code and other agents. Give it a draft and tell it who will read it. It edits the prose, figures and order of information around the decisions that reader has to make.
+
+For example, a warehouse handover has to answer one question before a volunteer does anything twice. **If the receipt for ticket 37 times out, should I open a new ticket?**
+
+| Original handover | Revised handover |
+|---|---|
+| “Timeouts and confirmed failures are handled differently.” | “Keep ticket 37 and resend with the same number. The warehouse may already have saved it. Remove your local record once its receipt arrives.” |
+
+These excerpts summarize a [fictional Chinese handover and its revision](evals/README.md) in English. The original brief leaves one question open: who retries a confirmed save failure? The revision keeps that gap visible.
+
+```sh
+npx skills add hw118118/reader-first-writing
+```
+
+Try it on a design you already know: *“Edit this for an engineer attending their first review. Can they tell when the operation is safe to retry? Keep the evidence beside the answer.”*
 
 ## What it produces
 
@@ -16,7 +30,7 @@ Both figures were drawn by the bundled module. [View the chart source](assets/fi
 
 ## Try it
 
-Install the repository as a directory named `reader-first-writing` in your agent’s skill root, or copy its runtime files as shown below. The writing instructions are plain Markdown. The document can be in the language requested by the reader.
+Use the installer above to select an agent, or clone the repository into the matching project directory below. The writing instructions are plain Markdown. The document can be in the language requested by the reader.
 
 | Agent | Project installation | Invocation |
 |---|---|---|
